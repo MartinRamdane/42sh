@@ -5,7 +5,7 @@
 ## makefile
 ##
 
-NAME = mysh
+NAME = 42sh
 
 SRC = *.c
 
