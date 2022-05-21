@@ -37,9 +37,7 @@ void write_error_message(char *path)
         write(1, ": Exec format error. Wrong Architecture.\n", 41);
     } else {
         write(1, path, my_strlen(path));
-        write(1, ": ", 2);
-        write(1, strerror(errno), my_strlen(strerror(errno)));
-        write(1, ".\n", 2);
+        my_putstr(": Command not found.\n");
     }
 }
 
