@@ -30,6 +30,8 @@ char *check_path(char **path, char *exec, char **arr)
     if (my_checker(exec) == 1) {
         return exec;
     }
+    if (!path || !path[i])
+        return exec;
     while (path[i] != NULL) {
         my_strcpy(tmp, path[i]);
         my_strcat(tmp, "/");
@@ -46,7 +48,7 @@ char *check_path(char **path, char *exec, char **arr)
 char **parse_path(char *path, char *delim, char **old)
 {
     if (path == NULL)
-        return old;
+        return NULL;
     char *tmp;
     int i = 0;
     char *tmp2 = path;

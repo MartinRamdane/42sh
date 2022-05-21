@@ -7,21 +7,6 @@
 
 #include "include/my.h"
 
-/*void hide_ctrl(char **env, int tty_val)
-{
-    if (tty_val == 0)
-        return;
-    int val = 0;
-    char **env_cp = my_arrcpy(env);
-    char *path = get_env(env_cp, "PATH=");
-    char **parsed = parse_path(path, ":", parsed);
-    char *test = remove_trailing_spaces("stty -echoctl");
-    char **arr = arg_to_str(test);
-    char *tmp = check_path(parsed, arr[0], arr);
-    val = make_exec(arr, env, tmp, val);
-    signal(SIGINT, manage_ctrl_c);
-}*/
-
 void print_prompt(char **env)
 {
     my_putstr("$> ");

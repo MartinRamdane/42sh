@@ -18,11 +18,12 @@ int check_special_cases(char **env, char **arg)
     if (my_strncmp(arg[1], "~", my_strlen(arg[1])) == 0) {
         char *path = get_env(env_cp, "HOME=");
         update_pwd(env, path);
-        return 2;
+        return 1;
     }
     val = check_dir_utils(arg, env, env_cp);
-    if (val != 0)
+    if (val != 0) {
         return val;
+    }
     return 0;
 }
 

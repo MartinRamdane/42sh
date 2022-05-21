@@ -52,6 +52,8 @@ int env_checker(char **env, char *find)
 char *get_path(char **env, char *find, char *path)
 {
     char **tmp = env;
+    if (!env)
+        return NULL;
     for (int i = 0; tmp[i] != NULL; i++){
         if (my_strncmp(tmp[i], find, my_strlen(find)) == 0) {
             return (move_pointer(tmp[i]));
