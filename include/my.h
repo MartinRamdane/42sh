@@ -148,4 +148,7 @@ int is_viable(char *tmp2);
 void utils_pipe(t_infos *infos, int run, int pipe_nb);
 int check_builtin_pipe(t_infos *infos, t_list *node);
 int handling_folder_files_pipe2(t_list *list, t_infos *infos);
+void get_separators(t_infos *infos, char *line);
+void double_ampersand(t_infos *infos, char *line);
+void get_double_pipes(t_infos *infos, char *line);
 #endif/* !MY_H_ */
