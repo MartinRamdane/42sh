@@ -10,7 +10,9 @@
 char **malloc_arr(int words)
 {
     int nb = 0;
-    char **arr = malloc(sizeof(char *) * words + 1);
+    char **arr = malloc(sizeof(char *) * (words + 1));
+    for (int i = 0; i != words + 1; i++)
+        arr[i] = NULL;
     for (int tmp = words; tmp != 0; tmp--) {
         arr[nb] = malloc(sizeof(char) * 1000);
         my_memset(arr[nb], '\0', 1000);
