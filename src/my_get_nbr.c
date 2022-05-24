@@ -18,3 +18,17 @@ int my_get_nbr(char *str)
     }
     return nb;
 }
+
+int my_get_nbr_pos(char *str, int i)
+{
+    int nb = 0;
+    while (str[i] != '\0' ) {
+        while (str[i] >= '0' && str[i] <= '9') {
+            nb = nb * 10;
+            nb = nb + str[i] - 48;
+            i = i + 1;
+        }
+        i++;
+    }
+    return nb;
+}

@@ -152,4 +152,9 @@ void get_separators(t_infos *infos, char *line);
 void double_ampersand(t_infos *infos, char *line);
 void get_double_pipes(t_infos *infos, char *line);
 int check_double_pipes(char *line, int i);
+int print_history(char **arg);
+void add_in_history(char *cmd);
+int my_get_nbr_pos(char *str, int i);
+char *do_exclamation(char *line, t_infos *infos);
+char *my_strcpy_n(char *dest, char *src);
 #endif/* !MY_H_ */

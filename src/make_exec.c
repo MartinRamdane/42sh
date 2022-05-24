@@ -31,6 +31,9 @@ int make_built_sec(char **arg, char **env, t_infos *infos)
     if (my_strncmp(arg[0], "cd", my_strlen(arg[0])) == 0) {
         return change_directory(arg, env);
     }
+    if (my_strncmp(arg[0], "history", my_strlen(arg[0])) == 0) {
+        return print_history(arg);
+    }
     return -1;
 }
 

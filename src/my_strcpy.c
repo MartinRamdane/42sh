@@ -20,3 +20,14 @@ char *my_strcpy(char *dest, char const *src)
     dest[run] = '\0';
     return (dest);
 }
+
+char *my_strcpy_n(char *dest, char *src)
+{
+    int run = 0;
+    while (src[run] != '\n') {
+        dest[run] = src[run];
+        run = run + 1;
+    }
+    dest[run] = '\0';
+    return (dest);
+}

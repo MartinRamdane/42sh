@@ -11,6 +11,7 @@ int exec_shell(t_infos *infos)
 {
     char *line = NULL;
     char *tmp2 = NULL;
+    char *tmp3 = NULL;
     size_t len = 0;
     ssize_t size = 0;
     int tty_val = isatty(STDIN_FILENO), val = 0;
@@ -20,6 +21,13 @@ int exec_shell(t_infos *infos)
         if (tty_val != 0)
             print_prompt(infos->env);
         size = getline(&line, &len, stdin);
+        add_in_history(line);
+        // if ((tmp3 = do_exclamation(line, infos))) {
+        //     printf("tmp3 = %s\n", tmp3);
+        //     line = malloc(sizeof(char) * (my_strlen(tmp3) + 1));
+        //     line = my_strcpy(line, tmp3);
+        // } else
+        //     continue;
         if (line[my_strlen(line) - 1] == '\n')
             line[my_strlen(line) - 1] = '\0';
         while ((tmp2 = strtok_r(line, ";", &line))) {
