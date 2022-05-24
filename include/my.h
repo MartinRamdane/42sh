@@ -50,6 +50,7 @@ struct infos {
     int pipe_run;
     int fd_in;
     struct list *list;
+    bool should_continue;
 } typedef t_infos;
 
 struct list {

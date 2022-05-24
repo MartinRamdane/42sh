@@ -70,7 +70,7 @@ char *do_exclamation(char *line, t_infos *infos)
         }
         i++;
     }
-    printf("%i: Event not found.", line_nbr);
-    infos->return_val = 1; fclose(fd);
+    printf("%i: Event not found.\n", line_nbr);
+    infos->return_val = 1; infos->should_continue = false; fclose(fd);
     return NULL;
 }

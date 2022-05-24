@@ -9,14 +9,11 @@
 
 int exec_shell(t_infos *infos)
 {
-    char *line = NULL;
-    char *tmp2 = NULL;
-    char *tmp3 = NULL;
+    char *line = NULL, *tmp2 = NULL;
     size_t len = 0;
     ssize_t size = 0;
-    int tty_val = isatty(STDIN_FILENO), val = 0;
+    int tty_val = isatty(STDIN_FILENO), val = 0, status;
     pid_t pid;
-    int status;
     while (1) {
         if (tty_val != 0)
             print_prompt(infos->env);
@@ -27,6 +24,7 @@ int exec_shell(t_infos *infos)
         while ((tmp2 = strtok_r(line, ";", &line))) {
             double_ampersand(infos, tmp2);
         }
+        infos->should_continue = true;
         manage_exit(size, tty_val, infos->return_val);
     }
     my_putstr("exit\n");

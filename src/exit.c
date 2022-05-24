@@ -9,11 +9,12 @@
 
 int exit_values(char **arg)
 {
-    if (arg[2] != NULL) {
+    int arr_len = my_arr_len(arg);
+    if (arr_len == 2) {
         my_putstr("exit: Expression Syntax.\n");
         return 1;
     }
-    if (arg[1] == NULL) {
+    if (arr_len == 0) {
         my_putstr("exit\n");
         exit(0);
     }
