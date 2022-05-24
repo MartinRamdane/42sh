@@ -5,7 +5,7 @@
 ** main
 */
 
-#include "include/my.h"
+#include "my.h"
 
 void print_prompt(char **env)
 {

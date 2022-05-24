@@ -7,7 +7,7 @@
 
 NAME = 42sh
 
-SRC = *.c
+SRC = src/*.c
 
 all:
 	gcc -g3 -o $(NAME) $(SRC) -L./include -I./include

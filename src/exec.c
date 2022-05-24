@@ -5,7 +5,7 @@
 ** exec
 */
 
-#include "include/my.h"
+#include "my.h"
 
 void print_arg(char **arg)
 {
