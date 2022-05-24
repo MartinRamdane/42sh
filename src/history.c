@@ -7,13 +7,28 @@
 
 #include "my.h"
 
+int get_nb_lignes_history(void)
+{
+    int result = 0;
+    FILE *fd = fopen("/tmp/.42sh_history.txt", "r");
+    char *find = NULL;
+    size_t size_len = 0;
+    while (getline(&find, &size_len, fd) != -1)
+        result++;
+    return result;
+}
+
+void clear_history(void)
+{
+    int fd = open("/tmp/.42sh_history.txt", O_CREAT | O_WRONLY | O_TRUNC,
+    S_IRUSR | S_IWUSR);
+    close(fd);
+}
+
 int print_history(char **arg)
 {
     if (arg[1] && strcmp(arg[1], "-c") == 0) {
-        int fd = open("/tmp/.42sh_history.txt", O_CREAT | O_WRONLY | O_TRUNC,
-        S_IRUSR | S_IWUSR);
-        close(fd);
-        return 0;
+        clear_history(); return 0;
     }
     int fd = open("/tmp/.42sh_history.txt", O_CREAT | O_RDONLY | O_APPEND,
     S_IRUSR | S_IWUSR);
@@ -52,9 +67,7 @@ char *do_exclamation(char *line, t_infos *infos)
         }
         i++;
     }
-    infos->return_val = 1;
-    fclose(fd);
+    printf("%i: Event not found.", line_nbr);
+    infos->return_val = 1; fclose(fd);
     return NULL;
 }
-
-// if !53356 > return 1 and  3563: Event not found.
