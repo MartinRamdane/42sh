@@ -26,8 +26,5 @@ int check_errors(int status, pid_t p)
 
 int return_value(int sign)
 {
-    if (sign == 11)
-        return 139;
-    if (sign == 8)
-        return 136;
+    return 0;
 }
