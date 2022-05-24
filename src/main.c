@@ -9,7 +9,21 @@
 
 void print_prompt(char **env)
 {
-    my_putstr("$> ");
+    char *path = my_revstr(getcwd(NULL, 0));
+    char *dir = malloc(sizeof(char) * (my_strlen_char(path, '/')));
+    dir = my_revstr(my_strcpy_slash(dir, path));
+    char *home = get_env(env, "HOME=");
+    if (home != NULL) {
+        if (my_strcmp(home, dir) == 0) {
+            dir[0] = '~'; dir[1] = '\0';
+        }
+    }
+    if (!dir[0])
+        dir[0] = '/';
+    printf(ANSI_COLOR_GREEN"-> ");
+    printf(ANSI_COLOR_CYAN"%s:", dir);
+    printf(ANSI_COLOR_RESET" ");
+    free(path); free(dir); free(home);
 }
 
 int main(int argc, char **argv, char **env)

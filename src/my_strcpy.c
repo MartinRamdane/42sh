@@ -31,3 +31,14 @@ char *my_strcpy_n(char *dest, char *src)
     dest[run] = '\0';
     return (dest);
 }
+
+char *my_strcpy_slash(char *dest, char *src)
+{
+    int run = 0;
+    while (src[run] != '/' && src[run] != '\0') {
+        dest[run] = src[run];
+        run = run + 1;
+    }
+    dest[run] = '\0';
+    return (dest);
+}

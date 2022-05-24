@@ -14,3 +14,13 @@ int my_strlen(char const *str)
     }
     return (run);
 }
+
+int my_strlen_char(char const *str, char c)
+{
+    int run;
+    run = 0;
+    while (str[run] != '\0' && str[run] != c) {
+        run++;
+    }
+    return (run);
+}

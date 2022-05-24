@@ -20,3 +20,15 @@ int my_strncmp(char const *s1, char const *s2, int n)
     }
     return 0;
 }
+
+int my_strcmp(char *s1, char *s2)
+{
+    int run = 1;
+    while (s2[run] != '\0') {
+        if (s1[run + 1] != s2[run]) {
+            return 1;
+        }
+        run = run + 1;
+    }
+    return 0;
+}

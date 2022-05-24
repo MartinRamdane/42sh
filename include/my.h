@@ -22,6 +22,12 @@
 #ifndef MY_H_
     #define MY_H_
 
+#define ANSI_COLOR_RED     "\e[1;31m"
+#define ANSI_COLOR_BLUE     "\e[1;34m"
+#define ANSI_COLOR_CYAN     "\e[1;36m"
+#define ANSI_COLOR_GREEN     "\e[1;32m"
+#define ANSI_COLOR_RESET    "\e[0m"
+
 struct infos {
     int ac;
     char **av;
@@ -158,4 +164,8 @@ int my_get_nbr_pos(char *str, int i);
 char *do_exclamation(char *line, t_infos *infos);
 char *my_strcpy_n(char *dest, char *src);
 void history_h(void);
+char *my_revstr(char *str);
+char *my_strcpy_slash(char *dest, char *src);
+int my_strlen_char(char const *str, char c);
+int my_strcmp(char *s1, char *s2);
 #endif/* !MY_H_ */
