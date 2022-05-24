@@ -41,7 +41,7 @@ void update_pwd(char **env, char *new)
 {
     char *old_pwd = getcwd(NULL, 0);
     char *new_pwd = new;
-    if (new[my_strlen(new) - 1] == '/')
+    if (new[my_strlen(new) - 1] == '/' && my_strlen(new) > 1)
         new[my_strlen(new) - 1] = '\0';
     replace_env(env, "OLDPWD=", old_pwd);
     chdir(new);

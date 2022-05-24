@@ -24,17 +24,21 @@ void check_withoutpipe(t_infos *infos, char *line)
 
 void run_withoutpipe(t_infos *infos, char *line)
 {
-    get_redirection(infos, line);
-    char **env_cp = my_arrcpy(infos->env);
-    char *path = get_path(env_cp, "PATH=", path);
-    char **parsed = parse_path(path, ":", parsed);
-    infos->args = parse_arr(line);
-    infos->command = check_path(parsed, infos->args[0], infos->args);
-    make_exec(infos);
-    dup2(infos->save_stdin, 0);
-    dup2(infos->save_stdout, 1);
-    infos->right_type = 0;
-    infos->left_type = 0;
+    if (do_exclamation(line, infos))
+        line = do_exclamation(line, infos);
+    if (infos->should_continue) {
+        get_redirection(infos, line);
+        char **env_cp = my_arrcpy(infos->env);
+        char *path = get_path(env_cp, "PATH=", path);
+        char **parsed = parse_path(path, ":", parsed);
+        infos->args = parse_arr(line);
+        infos->command = check_path(parsed, infos->args[0], infos->args);
+        make_exec(infos);
+        dup2(infos->save_stdin, 0);
+        dup2(infos->save_stdout, 1);
+        infos->right_type = 0;
+        infos->left_type = 0;
+    }
 }
 
 void check_withpipe(t_infos *infos, char *line)
