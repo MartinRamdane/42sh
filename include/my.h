@@ -111,7 +111,7 @@ char *get_path(char **env, char *find, char *path);
 int replace_env(char **env, char *var, char *val);
 int make_built_sec(char **arg, char **env, t_infos *infos);
 int my_unsetenv(char **env, char **arg);
-void print_prompt(char **env);
+void print_prompt(char **env, t_infos *infos);
 void hide_ctrl(char **env, int tty_val);
 int exec_shell(t_infos *infos);
 int check_dir_utils(char **arg, char **env, char **env_cp);

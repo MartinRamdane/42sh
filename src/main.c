@@ -7,7 +7,7 @@
 
 #include "my.h"
 
-void print_prompt(char **env)
+void print_prompt(char **env, t_infos *infos)
 {
     char *path = my_revstr(getcwd(NULL, 0));
     char *dir = malloc(sizeof(char) * (my_strlen_char(path, '/')));
@@ -20,7 +20,10 @@ void print_prompt(char **env)
     }
     if (!dir[0])
         dir[0] = '/';
-    printf(ANSI_COLOR_GREEN"-> ");
+    if (infos->return_val == 0)
+        printf(ANSI_COLOR_GREEN"-> ");
+    else
+        printf(ANSI_COLOR_RED"-> ");
     printf(ANSI_COLOR_CYAN"%s:", dir);
     printf(ANSI_COLOR_RESET" ");
     free(path); free(dir); free(home);
@@ -34,6 +37,7 @@ int main(int argc, char **argv, char **env)
     infos->env = env;
     infos->right_type = 0;
     infos->left_type = 0;
+    infos->return_val = 0;
     infos->should_continue = true;
     if (argc == 1) {
         infos->save_stdin = dup(STDIN_FILENO);

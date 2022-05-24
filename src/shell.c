@@ -16,7 +16,7 @@ int exec_shell(t_infos *infos)
     pid_t pid;
     while (1) {
         if (tty_val != 0)
-            print_prompt(infos->env);
+            print_prompt(infos->env, infos);
         size = getline(&line, &len, stdin);
         add_in_history(line);
         if (line[my_strlen(line) - 1] == '\n')
