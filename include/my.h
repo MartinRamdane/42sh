@@ -157,4 +157,5 @@ void add_in_history(char *cmd);
 int my_get_nbr_pos(char *str, int i);
 char *do_exclamation(char *line, t_infos *infos);
 char *my_strcpy_n(char *dest, char *src);
+void history_h(void);
 #endif/* !MY_H_ */

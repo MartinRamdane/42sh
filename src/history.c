@@ -30,15 +30,18 @@ int print_history(char **arg)
     if (arg[1] && strcmp(arg[1], "-c") == 0) {
         clear_history(); return 0;
     }
-    int fd = open("/tmp/.42sh_history.txt", O_CREAT | O_RDONLY | O_APPEND,
-    S_IRUSR | S_IWUSR);
-    struct stat s;
-    stat("/tmp/.42sh_history.txt", &s);
-    char *history = malloc(sizeof(char) * (s.st_size + 1));
-    read(fd, history, s.st_size);
-    history[s.st_size] = '\0';
-    printf("%s", history);
-    close(fd);
+    if (arg[1] && strcmp(arg[1], "-h") == 0) {
+        history_h(); return 0;
+    }
+    FILE *fd = fopen("/tmp/.42sh_history.txt", "r+");
+    char *history = NULL;
+    size_t size_len = 0;
+    int i = 1;
+    while (getline(&history, &size_len, fd) != -1) {
+        printf("%i %s", i, history);
+        i++;
+    }
+    fclose(fd);
     free(history);
     return 0;
 }
