@@ -20,7 +20,8 @@ int exec_shell(t_infos *infos)
         if (tty_val != 0)
             print_prompt(infos->env);
         size = getline(&line, &len, stdin);
-        line[my_strlen(line) - 1] = '\0';
+        if (line[my_strlen(line) - 1] == '\n')
+            line[my_strlen(line) - 1] = '\0';
         while ((tmp2 = strtok_r(line, ";", &line))) {
             double_ampersand(infos, tmp2);
         }
