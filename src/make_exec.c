@@ -6,6 +6,7 @@
 */
 
 #include "my.h"
+#include "../include/script.h"
 
 int make_built(char **arg, char **env, t_infos *infos)
 {
@@ -33,6 +34,9 @@ int make_built_sec(char **arg, char **env, t_infos *infos)
     }
     if (my_strncmp(arg[0], "history", my_strlen(arg[0])) == 0) {
         return print_history(arg);
+    }
+    if (my_strncmp(arg[0], "echo", my_strlen(arg[0])) == 0) {
+        return my_echo(arg, infos);
     }
     return -1;
 }

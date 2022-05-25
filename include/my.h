@@ -169,4 +169,5 @@ char *my_revstr(char *str);
 char *my_strcpy_slash(char *dest, char *src);
 int my_strlen_char(char const *str, char c);
 int my_strcmp(char *s1, char *s2);
+void my_put_nbr(int nb);
 #endif/* !MY_H_ */
