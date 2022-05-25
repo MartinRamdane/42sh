@@ -66,7 +66,8 @@ char *take_name_var2(char *str)
     return (tmp);
 }
 
-void echo_var(char *str, l_var *list) {
+void echo_var(char *str, l_var *list)
+{
     char *name_var = take_name_var2(str);
     while (list != NULL) {
         if (strstr(list->name, name_var)) {
