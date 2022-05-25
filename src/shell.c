@@ -55,7 +55,7 @@ void get_double_pipes(t_infos *infos, char *line)
             i++;
         }
         if (run >= 2 && infos->return_val != 0) {
-           check_withoutpipe(infos, arg);
+            check_withoutpipe(infos, arg);
             run = 1;
         } else if (run < 2)
             check_withoutpipe(infos, arg);
@@ -71,7 +71,7 @@ void get_double_pipes(t_infos *infos, char *line)
 
 int check_double_pipes(char *line, int i)
 {
-    if (line[i] == '|' && i + 1 <= my_strlen(line) &&line[i + 1] == '|')
+    if (line[i] == '|' && i + 1 <= my_strlen(line) && line[i + 1] == '|')
         return 1;
     return 0;
 }
