@@ -10,7 +10,7 @@
 void print_prompt(char **env, t_infos *infos)
 {
     char *path = my_revstr(getcwd(NULL, 0));
-    char *dir = malloc(sizeof(char) * (my_strlen_char(path, '/')));
+    char *dir = malloc(sizeof(char) * (my_strlen_char(path, '/')) + 1);
     dir = my_revstr(my_strcpy_slash(dir, path));
     char *home = get_env(env, "HOME=");
     if (home != NULL) {
