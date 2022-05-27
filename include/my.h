@@ -5,6 +5,8 @@
 ** my
 */
 
+#pragma once
+
 #include <fcntl.h>
 #include <signal.h>
 #include <stdlib.h>
@@ -19,13 +21,18 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <dirent.h>
-#pragma once
 
 #define ANSI_COLOR_RED "\e[1;31m"
 #define ANSI_COLOR_BLUE "\e[1;34m"
 #define ANSI_COLOR_CYAN "\e[1;36m"
 #define ANSI_COLOR_GREEN "\e[1;32m"
 #define ANSI_COLOR_RESET "\e[0m"
+
+struct alias {
+    char *alias;
+    char *command;
+    struct alias *next;
+} typedef t_alias;
 
 struct infos {
     int ac;
@@ -50,6 +57,7 @@ struct infos {
     int fd_in;
     struct list *list;
     bool should_continue;
+    t_alias *alias;
 } typedef t_infos;
 
 struct list {
@@ -169,3 +177,10 @@ char *my_strcpy_slash(char *dest, char *src);
 int my_strlen_char(char const *str, char c);
 int my_strcmp(char *s1, char *s2);
 void my_put_nbr(int nb);
+void print_all_alias(t_infos *infos);
+void alias(t_infos *infos, char **arg);
+void add_to_aliaslist(t_infos *infos, char *line, char *alias);
+void search_alias(t_infos *infos, char *alias);
+void split_command(t_infos *infos, char **arg);
+char *get_alias(char *line, t_infos *infos);
+char *update_line_alias(char *line, char *alias, char *command);

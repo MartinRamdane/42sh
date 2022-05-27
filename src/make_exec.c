@@ -18,8 +18,11 @@ int make_built(char **arg, char **env, t_infos *infos)
         print_arg(env);
         return 0;
     }
-    if (my_strncmp(arg[0], "unsetenv", my_strlen(arg[0])) == 0) {
+    if (my_strncmp(arg[0], "unsetenv", my_strlen(arg[0])) == 0)
         return my_unsetenv(env, arg);
+    if (my_strncmp(arg[0], "alias", my_strlen(arg[0])) == 0) {
+        alias(infos, arg);
+        return 0;
     }
     return make_built_sec(arg, env, infos);
 }

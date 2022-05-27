@@ -21,11 +21,12 @@ int exec_shell(t_infos *infos)
         add_in_history(line);
         if (line[my_strlen(line) - 1] == '\n')
             line[my_strlen(line) - 1] = '\0';
-        while ((tmp2 = strtok_r(line, ";", &line))) {
+        line = get_alias(line, infos);
+        while ((tmp2 = strtok_r(line, ";", &line)))
             double_ampersand(infos, tmp2);
-        }
         infos->should_continue = true;
         manage_exit(size, tty_val, infos->return_val);
+        line = NULL;
     }
     my_putstr("exit\n");
 }

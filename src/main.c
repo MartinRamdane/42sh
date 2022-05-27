@@ -39,6 +39,7 @@ int main(int argc, char **argv, char **env)
     infos->left_type = 0;
     infos->return_val = 0;
     infos->should_continue = true;
+    infos->alias = NULL;
     if (argc == 1) {
         infos->save_stdin = dup(STDIN_FILENO);
         infos->save_stdout = dup(STDOUT_FILENO);
