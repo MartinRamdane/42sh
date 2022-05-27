@@ -18,7 +18,7 @@ int handling_folder_files(t_infos *infos)
     && file_exists(infos->command) || check_slash(infos->command)) {
         if (execve(infos->command, infos->args, infos->env) == -1) {
             write_error_message(infos->command);
-            exit(1);
+            exit(0);
         }
     }
     if (my_strncmp(infos->command, infos->args[0],
@@ -35,9 +35,16 @@ void write_error_message(char *path)
     if (errno == 8) {
         write(1, path, my_strlen(path));
         write(1, ": Exec format error. Wrong Architecture.\n", 41);
+        return;
+    }
+    if (errno == 2) {
+        write(1, path, my_strlen(path));
+        write(1, ": Command not found.\n", 21);
     } else {
         write(1, path, my_strlen(path));
-        my_putstr(": Command not found.\n");
+        write(1, ": ", 2);
+        write(1, strerror(errno), my_strlen(strerror(errno)));
+        write(1, ".\n", 2);
     }
 }
 
@@ -65,7 +72,7 @@ int handling_folder_files_pipe(t_list *list, t_infos *infos)
     check_slash(infos->list->command)) {
         if (execve(infos->list->command, infos->list->arg, infos->env) == -1) {
             write_error_message(infos->list->command);
-            exit(1);
+            exit(0);
         }
     }
     return (handling_folder_files_pipe2(list, infos));
