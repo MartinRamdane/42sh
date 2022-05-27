@@ -9,11 +9,11 @@
 
 #pragma once
 
-typedef struct l_var {
+struct l_var {
     char *value;
     char *name;
     struct l_var *next;
-} l_var;
+} typedef l_var;
 
 int recup_var(char *str, l_var *list_var);
 void add_variable(l_var **list, l_var *maillon);

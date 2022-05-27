@@ -19,14 +19,13 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <dirent.h>
-#ifndef MY_H_
-    #define MY_H_
+#pragma once
 
-#define ANSI_COLOR_RED     "\e[1;31m"
-#define ANSI_COLOR_BLUE     "\e[1;34m"
-#define ANSI_COLOR_CYAN     "\e[1;36m"
-#define ANSI_COLOR_GREEN     "\e[1;32m"
-#define ANSI_COLOR_RESET    "\e[0m"
+#define ANSI_COLOR_RED "\e[1;31m"
+#define ANSI_COLOR_BLUE "\e[1;34m"
+#define ANSI_COLOR_CYAN "\e[1;36m"
+#define ANSI_COLOR_GREEN "\e[1;32m"
+#define ANSI_COLOR_RESET "\e[0m"
 
 struct infos {
     int ac;
@@ -170,4 +169,3 @@ char *my_strcpy_slash(char *dest, char *src);
 int my_strlen_char(char const *str, char c);
 int my_strcmp(char *s1, char *s2);
 void my_put_nbr(int nb);
-#endif/* !MY_H_ */
