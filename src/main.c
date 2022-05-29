@@ -32,8 +32,6 @@ void print_prompt(char **env, t_infos *infos)
 int main(int argc, char **argv, char **env)
 {
     t_infos *infos = malloc(sizeof(t_infos));
-    infos->ac = argc;
-    infos->av = argv;
     infos->env = env;
     infos->right_type = 0;
     infos->left_type = 0;

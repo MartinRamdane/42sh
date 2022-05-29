@@ -35,8 +35,6 @@ struct alias {
 } typedef t_alias;
 
 struct infos {
-    int ac;
-    char **av;
     char **env;
     char *command;
     char **args;
