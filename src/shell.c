@@ -13,16 +13,16 @@ int exec_shell(t_infos *infos)
     size_t len = 0;
     ssize_t size = 0;
     int tty_val = isatty(STDIN_FILENO), val = 0, status;
-    pid_t pid;
     while (1) {
         if (tty_val != 0)
             print_prompt(infos->env, infos);
         size = getline(&line, &len, stdin);
-        add_in_history(line);
-        if (line[my_strlen(line) - 1] == '\n')
+        if (size != -1)
+            add_in_history(line);
+        if (size != -1 && line[my_strlen(line) - 1] == '\n')
             line[my_strlen(line) - 1] = '\0';
         line = get_alias(line, infos);
-        while ((tmp2 = strtok_r(line, ";", &line)))
+        while (size != -1 && (tmp2 = strtok_r(line, ";", &line)))
             double_ampersand(infos, tmp2);
         infos->should_continue = true;
         manage_exit(size, tty_val, infos->return_val);
