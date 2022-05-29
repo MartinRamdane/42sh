@@ -38,16 +38,17 @@ void double_ampersand(t_infos *infos, char *line)
     while (arg = strtok_r(line, "&&", &line)) {
         i++;
         if (i >= 2 && infos->return_val == 0) {
-            check_withoutpipe(infos, arg);
+            get_double_pipes(infos, arg);
             i = 1;
         } else if (i < 2)
-            check_withoutpipe(infos, arg);
+            get_double_pipes(infos, arg);
     }
 }
 
 void get_double_pipes(t_infos *infos, char *line)
 {
-    char *arg = malloc(sizeof(char) * my_strlen(line));
+    char *arg = malloc(sizeof(char) * my_strlen(line) + 1);
+    my_memset(arg, 0, my_strlen(line) + 1);
     int i = 0, j = 0, run = 1;
     while (line[i]) {
         while (line[i] && !check_double_pipes(line, i)) {
@@ -60,11 +61,11 @@ void get_double_pipes(t_infos *infos, char *line)
             run = 1;
         } else if (run < 2)
             check_withoutpipe(infos, arg);
-        while (line[i] && check_double_pipes(line, i)) {
+        while (line[i] && check_double_pipes(line, i))
             i += 2;
-        }
         free(arg);
-        arg = malloc(sizeof(char) * my_strlen(line));
+        arg = malloc(sizeof(char) * my_strlen(line) + 1);
+        my_memset(arg, 0, my_strlen(line) + 1);
         j = 0;
         run++;
     }
