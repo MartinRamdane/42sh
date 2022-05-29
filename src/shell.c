@@ -53,8 +53,7 @@ void get_double_pipes(t_infos *infos, char *line)
     while (line[i]) {
         while (line[i] && !check_double_pipes(line, i)) {
             arg[j] = line[i];
-            j++;
-            i++;
+            j++; i++;
         }
         if (run >= 2 && infos->return_val != 0) {
             check_withoutpipe(infos, arg);
